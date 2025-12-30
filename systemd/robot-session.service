@@ -1,0 +1,18 @@
+[Unit]
+Description=Robot Voice Assistant - Session Manager
+After=network.target
+
+[Service]
+Type=simple
+User=saptapi
+WorkingDirectory=/home/saptapi/robot
+ExecStart=/home/saptapi/robot/venv/bin/python /home/saptapi/robot/modules/session_manager.py
+StandardOutput=append:/home/saptapi/robot/logs/session.log
+StandardError=append:/home/saptapi/robot/logs/session.log
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

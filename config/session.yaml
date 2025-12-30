@@ -1,6 +1,6 @@
 session:
-  idle_timeout: 30  # seconds of silence before returning to IDLE
-  wake_word_threshold: 0.3  # Lowered for better detection
+  idle_timeout: 15  # seconds of silence before returning to IDLE
+  wake_word_threshold: 0.1  # Extra sensitive - easy to trigger (user preference)
   goodbye_phrases:
     - "goodbye"
     - "that's all"

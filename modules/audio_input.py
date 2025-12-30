@@ -14,7 +14,7 @@ import yaml
 import time
 
 # Audio device configuration
-MIC_INDEX = 1  # USB microphone
+MIC_INDEX = None  # Use system default device
 
 class AudioInput:
     def __init__(self):
@@ -105,11 +105,24 @@ class AudioInput:
                 samplerate=self.mic_rate,
                 dtype='int16',
                 channels=1,
-                blocksize=self.chunk_samples
+                blocksize=self.chunk_samples  # CRITICAL: Use 2000 samples @ 48kHz
             )
             self.wake_stream.start()
+            
+            # CRITICAL: Flush buffered audio to prevent echo detections
+            # Discard any audio that was buffered during transcription/processing
+            print("[AudioInput] 🔄 Flushing wake stream buffer to prevent echo...")
+            time.sleep(0.1)  # Let buffer populate
+            while True:
+                readable = self.wake_stream.read_available
+                if readable > 0:
+                    self.wake_stream.read(readable)  # Discard buffered data
+                else:
+                    break
+            print("[AudioInput] ✓ Buffer flushed, ready for wake word")
         
-        # Read audio chunk from stream (EXACT method from working test)
+        # Read audio chunk from stream (EXACT method from working test_wakeword.py)
+        # CRITICAL: Read exactly self.chunk_samples (2000 @ 48kHz)
         indata, overflowed = self.wake_stream.read(self.chunk_samples)
         
         # Convert to numpy array
@@ -118,35 +131,34 @@ class AudioInput:
         # Check audio level
         vol = np.abs(audio_48k).mean()
         
-        # Decimate by 3: 48kHz -> 16kHz (EXACT method from working test)
-        # Trim to multiple of 3
+        # Decimate by 3: 48kHz -> 16kHz (EXACT method from working test_wakeword.py)
+        # CRITICAL: Use trim_len method - this preserves temporal alignment
+        # Results in ~666 samples @ 16kHz which is what the model expects
         trim_len = (len(audio_48k) // 3) * 3
         audio_16k = audio_48k[:trim_len].reshape(-1, 3).mean(axis=1).astype(np.int16)
         
         # Detect wake word
         prediction = self.oww.predict(audio_16k)
         
-        # VERBOSE: Show ALL prediction scores when there's audio
-        if vol > 0.01:
-            all_scores = " | ".join([f"{k}: {v:.3f}" for k, v in prediction.items()])
-            print(f"[vol: {vol:.4f}] {all_scores}", end='\r')
-            
-            # DEBUG: Show hey_jarvis specifically
-            if 'hey_jarvis' in prediction:
-                jarvis_score = prediction['hey_jarvis']
-                if jarvis_score > 0.1:  # Show any significant score
-                    print(f"\n[DEBUG] hey_jarvis score: {jarvis_score:.3f} (threshold: {self.wake_threshold})")
+        # Show scores when there's audio activity
+        if vol > 100:
+            jarvis_score = prediction.get('hey_jarvis', 0.0)
+            if jarvis_score > 0.05:  # Show any meaningful score
+                print(f"[vol: {int(vol):5d}] hey_jarvis: {jarvis_score:.3f} (threshold: {self.wake_threshold})")
         
         # Wake word detected in IDLE state
         if self.session_state == "idle" and 'hey_jarvis' in prediction:
             jarvis_score = prediction['hey_jarvis']
-            print(f"\n[DEBUG] Checking: {jarvis_score:.3f} > {self.wake_threshold}?")
             
             if jarvis_score > self.wake_threshold:
                 print(f"\n[AudioInput] 🔊 Wake word 'Hey Jarvis' detected! (score: {jarvis_score:.2f})")
                 self.client.publish(self.topics['session']['wake_detected'], f"{jarvis_score}")
                 
-                # Wait a moment for session state to change
+                # STANDALONE MODE: Auto-transition to active for testing
+                print("[AudioInput] [STANDALONE] Auto-transitioning to ACTIVE state...")
+                self.session_state = "active"
+                
+                # Wait a moment before starting transcription
                 time.sleep(0.5)
     
     def listen_and_transcribe(self, duration=None):
@@ -161,8 +173,8 @@ class AudioInput:
         
         # VAD settings
         CHUNK_DURATION = 0.5  # 500ms chunks
-        SILENCE_THRESHOLD = 200  # Audio level threshold (int16)
-        SILENCE_DURATION = 1.5  # Stop after 1.5s of silence
+        SILENCE_THRESHOLD = 500  # Audio level threshold (int16) - balanced for speech detection
+        SILENCE_DURATION = 2.5  # Stop after 2.5s of silence (increased from 1.5s to avoid cutting off speech)
         MAX_RECORDING = 30  # Max 30 seconds total
         
         chunk_samples = int(CHUNK_DURATION * self.mic_rate)
@@ -271,15 +283,32 @@ class AudioInput:
         try:
             while True:
                 if self.session_state == "idle":
-                    # Wake word detection mode
+                    # Wake word detection mode ONLY
                     self.listen_wake_word()
                 elif self.session_state == "active" and not self.robot_speaking:
                     # Transcription mode - single capture then wait
                     result = self.listen_and_transcribe()
                     if result:  # Only if we got valid speech
-                        # Wait for robot to respond before listening again
-                        print("[AudioInput] Waiting for response...")
-                        time.sleep(2)
+                        # STANDALONE MODE: print result and return to IDLE
+                        print(f"[AudioInput] [STANDALONE] Got transcription, returning to IDLE...")
+                        self.session_state = "idle"
+                        # Flush wake word stream to clear old audio
+                        if self.wake_stream is not None:
+                            print("[AudioInput] 🔄 Flushing wake word stream...")
+                            self.wake_stream.stop()
+                            self.wake_stream.close()
+                            self.wake_stream = None
+                    else:
+                        # No speech detected - STANDALONE MODE: return to IDLE
+                        print("[AudioInput] [STANDALONE] No speech, returning to IDLE...")
+                        self.session_state = "idle"
+                        # Flush wake word stream
+                        if self.wake_stream is not None:
+                            print("[AudioInput] 🔄 Flushing wake word stream...")
+                            self.wake_stream.stop()
+                            self.wake_stream.close()
+                            self.wake_stream = None
+                        time.sleep(1.0)
                 else:
                     time.sleep(0.1)
         

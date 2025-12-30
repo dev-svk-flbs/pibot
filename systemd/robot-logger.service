@@ -1,0 +1,18 @@
+[Unit]
+Description=Robot Voice Assistant - Conversation Logger
+After=network.target robot-session.service
+
+[Service]
+Type=simple
+User=saptapi
+WorkingDirectory=/home/saptapi/robot
+ExecStart=/home/saptapi/robot/venv/bin/python /home/saptapi/robot/modules/conversation_logger.py
+StandardOutput=append:/home/saptapi/robot/logs/logger_sys.log
+StandardError=append:/home/saptapi/robot/logs/logger_sys.log
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

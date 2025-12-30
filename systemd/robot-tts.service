@@ -1,0 +1,18 @@
+[Unit]
+Description=Robot Voice Assistant - TTS Output
+After=network.target robot-session.service
+
+[Service]
+Type=simple
+User=saptapi
+WorkingDirectory=/home/saptapi/robot
+Environment="PATH=/home/saptapi/robot/venv/bin:/usr/local/bin:/usr/bin:/bin"
+Environment="PULSE_SERVER=unix:/run/user/1000/pulse/native"
+ExecStart=/home/saptapi/robot/venv/bin/python /home/saptapi/robot/modules/tts_output.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/saptapi/robot/logs/tts.log
+StandardError=append:/home/saptapi/robot/logs/tts.log
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=Robot Voice Assistant - LLM Client
+After=network.target robot-session.service
+
+[Service]
+Type=simple
+User=saptapi
+WorkingDirectory=/home/saptapi/robot
+Environment="PATH=/home/saptapi/robot/venv/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=/home/saptapi/robot/venv/bin/python /home/saptapi/robot/modules/llm_client.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/saptapi/robot/logs/llm.log
+StandardError=append:/home/saptapi/robot/logs/llm.log
+
+[Install]
+WantedBy=default.target

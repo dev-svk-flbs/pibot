@@ -47,6 +47,7 @@ class SessionManager:
         
         # Subscribe to relevant topics
         client.subscribe(self.topics['session']['wake_detected'])
+        client.subscribe(self.topics['session']['command'])
         client.subscribe(self.topics['audio']['transcription'])
         client.subscribe(self.topics['robot']['speaking'])
         client.subscribe(self.topics['llm']['response'])
@@ -58,8 +59,14 @@ class SessionManager:
         topic = msg.topic
         payload = msg.payload.decode('utf-8')
         
+        # Session command (cancel/reset)
+        if topic == self.topics['session']['command']:
+            if payload == "cancel" or payload == "reset":
+                print(f"[SessionManager] ⚠️  CANCEL command received! {self.state.value.upper()} → IDLE")
+                self.set_state(SessionState.IDLE)
+        
         # Wake word detected
-        if topic == self.topics['session']['wake_detected']:
+        elif topic == self.topics['session']['wake_detected']:
             if self.state == SessionState.IDLE:
                 print(f"[SessionManager] Wake word detected! IDLE → ACTIVE")
                 self.last_activity = time.time()
