@@ -1,0 +1,15 @@
+# TTS Configuration
+
+# Voice selection
+# Available voices:
+#   Female:
+#     - en_US-lessac-low (fast, 16kHz)
+#     - en_US-lessac-medium (better quality, 22kHz)
+#   Male:
+#     - en_US-danny-low (fast but robotic, 16kHz)
+#     - en_US-ryan-high (high quality natural, 22kHz) ✓ RECOMMENDED
+
+voice: "en_US-danny-low"  # Female voice - fast and natural on Pi
+
+# Speech settings
+length_scale: 0.75  # Speed: <1.0 = faster, >1.0 = slower (0.75 = 25% faster)

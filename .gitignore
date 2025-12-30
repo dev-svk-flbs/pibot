@@ -8,3 +8,5 @@ __pycache__/
 archive/
 venv/
 *.log
+piper_models/*.onnx
+piper_models/*.onnx
