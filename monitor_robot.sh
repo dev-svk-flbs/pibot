@@ -64,5 +64,5 @@ while true; do
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo "Commands: Ctrl+C to exit | mosquitto_pub -t session/command -m cancel"
     
-    sleep 2
+    sleep 1
 done

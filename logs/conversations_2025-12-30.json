@@ -1,111 +1,18 @@
 [
   {
-    "session_id": "20251230_170254",
-    "start_time": "2025-12-30T17:02:54.671030",
-    "wake_word_score": 0.42280930280685425,
-    "wake_word_time": "2025-12-30T17:02:54.671030",
-    "end_time": "2025-12-30T17:03:06.980529",
-    "duration": 12.309499
+    "session_id": "20251230_172713",
+    "start_time": "2025-12-30T17:27:13.353412",
+    "wake_word_score": 0.47730642557144165,
+    "wake_word_time": "2025-12-30T17:27:13.353412",
+    "end_time": "2025-12-30T17:27:24.784845",
+    "duration": 11.431433
   },
   {
-    "session_id": "20251230_170328",
-    "start_time": "2025-12-30T17:03:28.175003",
-    "wake_word_score": 0.3922683894634247,
-    "wake_word_time": "2025-12-30T17:03:28.175003",
-    "end_time": "2025-12-30T17:03:32.982599",
-    "duration": 4.807596
-  },
-  {
-    "session_id": "20251230_170542",
-    "start_time": "2025-12-30T17:05:42.617974",
-    "wake_word_score": 0.10393005609512329,
-    "wake_word_time": "2025-12-30T17:05:42.617974",
-    "tts_start": "2025-12-30T17:05:43.395887",
-    "tts_end": "2025-12-30T17:05:43.396271",
-    "tts_duration": 0.000384,
-    "end_time": "2025-12-30T17:05:59.005540",
-    "duration": 16.387566
-  },
-  {
-    "session_id": "20251230_170710",
-    "start_time": "2025-12-30T17:07:10.396884",
-    "wake_word_score": 0.10544446110725403,
-    "wake_word_time": "2025-12-30T17:07:10.396884",
-    "user_question": "is why do we like admibeers?",
-    "question_time": "2025-12-30T17:07:17.490897",
-    "llm_response": "It sounds like you're asking about \"admiring\" others! We admire people because they do amazing things, like being kind, talented, or brave. When we see someone doing something awesome, it inspires us to be our best selves, too! What kind of things do you admire in people?",
-    "response_time": "2025-12-30T17:07:19.371372",
-    "llm_latency": 1.880475,
-    "end_time": "2025-12-30T17:07:33.018672",
-    "duration": 22.621788
-  },
-  {
-    "session_id": "20251230_170710",
-    "start_time": "2025-12-30T17:07:10.396884",
-    "wake_word_score": 0.10544446110725403,
-    "wake_word_time": "2025-12-30T17:07:10.396884",
-    "user_question": "is why do we like admibeers?",
-    "question_time": "2025-12-30T17:07:17.490897",
-    "llm_response": "It sounds like you're asking about \"admiring\" others! We admire people because they do amazing things, like being kind, talented, or brave. When we see someone doing something awesome, it inspires us to be our best selves, too! What kind of things do you admire in people?",
-    "response_time": "2025-12-30T17:07:19.371372",
-    "llm_latency": 1.880475,
-    "end_time": "2025-12-30T17:09:26.634072",
-    "duration": 136.237188,
-    "tts_start": "2025-12-30T17:07:35.231677",
-    "tts_end": "2025-12-30T17:07:35.275341",
-    "tts_duration": 0.043664
-  },
-  {
-    "session_id": "20251230_170710",
-    "start_time": "2025-12-30T17:07:10.396884",
-    "wake_word_score": 0.10544446110725403,
-    "wake_word_time": "2025-12-30T17:07:10.396884",
-    "user_question": "is why do we like admibeers?",
-    "question_time": "2025-12-30T17:07:17.490897",
-    "llm_response": "It sounds like you're asking about \"admiring\" others! We admire people because they do amazing things, like being kind, talented, or brave. When we see someone doing something awesome, it inspires us to be our best selves, too! What kind of things do you admire in people?",
-    "response_time": "2025-12-30T17:07:19.371372",
-    "llm_latency": 1.880475,
-    "end_time": "2025-12-30T17:09:31.075469",
-    "duration": 140.678585,
-    "tts_start": "2025-12-30T17:07:35.231677",
-    "tts_end": "2025-12-30T17:07:35.275341",
-    "tts_duration": 0.043664
-  },
-  {
-    "session_id": "20251230_170710",
-    "start_time": "2025-12-30T17:07:10.396884",
-    "wake_word_score": 0.10544446110725403,
-    "wake_word_time": "2025-12-30T17:07:10.396884",
-    "user_question": "is why do we like admibeers?",
-    "question_time": "2025-12-30T17:07:17.490897",
-    "llm_response": "It sounds like you're asking about \"admiring\" others! We admire people because they do amazing things, like being kind, talented, or brave. When we see someone doing something awesome, it inspires us to be our best selves, too! What kind of things do you admire in people?",
-    "response_time": "2025-12-30T17:07:19.371372",
-    "llm_latency": 1.880475,
-    "end_time": "2025-12-30T17:10:10.258093",
-    "duration": 179.861209,
-    "tts_start": "2025-12-30T17:07:35.231677",
-    "tts_end": "2025-12-30T17:07:35.275341",
-    "tts_duration": 0.043664
-  },
-  {
-    "session_id": "20251230_171248",
-    "start_time": "2025-12-30T17:12:48.919028",
-    "wake_word_score": 0.2823094129562378,
-    "wake_word_time": "2025-12-30T17:12:48.919028",
-    "end_time": "2025-12-30T17:13:01.095778",
-    "duration": 12.17675
-  },
-  {
-    "session_id": "20251230_171316",
-    "start_time": "2025-12-30T17:13:16.161861",
-    "wake_word_score": 0.11292564868927002,
-    "wake_word_time": "2025-12-30T17:13:16.161861",
-    "user_question": "Hey Jarvis, is Ironman stronger than Superman?",
-    "question_time": "2025-12-30T17:13:24.983095",
-    "llm_response": "Great question! Iron Man is super smart and uses his amazing suits to fly and fight, while Superman has superpowers like flying, super strength, and heat vision. So, in a battle, Superman might have the edge because of his powers, but Iron Man is really clever and can come up with cool strategies! What do you think?",
-    "response_time": "2025-12-30T17:13:27.532881",
-    "llm_latency": 2.549786,
-    "end_time": "2025-12-30T17:13:40.104466",
-    "duration": 23.942605
+    "session_id": "20251230_172739",
+    "start_time": "2025-12-30T17:27:39.144112",
+    "wake_word_score": 0.23283255100250244,
+    "wake_word_time": "2025-12-30T17:27:39.144112",
+    "end_time": "2025-12-30T17:27:50.788041",
+    "duration": 11.643929
   }
 ]
