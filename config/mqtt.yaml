@@ -1,0 +1,32 @@
+mqtt:
+  broker: localhost
+  port: 1883
+  keepalive: 60
+
+topics:
+  session:
+    wake_detected: "session/wake_detected"
+    state: "session/state"
+    command: "session/command"
+  
+  audio:
+    transcription: "audio/transcription"
+    wake_score: "audio/wake_score"
+  
+  llm:
+    request: "llm/request"
+    response: "llm/response"
+  
+  robot:
+    speaking: "robot/speaking"
+    emotion: "robot/emotion"
+  
+  quiz:
+    start: "quiz/start"
+    question: "quiz/question"
+    answer: "quiz/answer"
+    speak: "quiz/speak"
+  
+  display:
+    mode: "display/mode"
+    update: "display/update"

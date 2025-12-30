@@ -1,0 +1,14 @@
+session:
+  idle_timeout: 30  # seconds of silence before returning to IDLE
+  wake_word_threshold: 0.5
+  goodbye_phrases:
+    - "goodbye"
+    - "that's all"
+    - "thank you"
+    - "thanks"
+    - "bye"
+
+states:
+  - IDLE      # Waiting for wake word
+  - ACTIVE    # In conversation
+  - SPEAKING  # Robot is talking (ignore input)

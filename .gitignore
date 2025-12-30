@@ -1,0 +1,10 @@
+# Git ignore file
+.env
+*.pyc
+__pycache__/
+*.wav
+*.mp3
+.DS_Store
+archive/
+venv/
+*.log
