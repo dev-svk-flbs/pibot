@@ -1,5 +1,5 @@
 session:
-  idle_timeout: 15  # seconds of silence before returning to IDLE
+  idle_timeout: 30  # seconds of silence before returning to IDLE (increased for longer speech + transcription)
   wake_word_threshold: 0.1  # Extra sensitive - easy to trigger (user preference)
   goodbye_phrases:
     - "goodbye"

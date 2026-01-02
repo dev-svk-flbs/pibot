@@ -1,0 +1,17 @@
+[Unit]
+Description=JARVIS GUI Display
+After=network.target robot-session.service
+
+[Service]
+Type=simple
+User=saptapi
+WorkingDirectory=/home/saptapi/robot
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/saptapi/.Xauthority"
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/home/saptapi/robot/venv/bin/python -u /home/saptapi/robot/modules/gui_display.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

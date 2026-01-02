@@ -14,5 +14,388 @@
     "wake_word_time": "2025-12-30T17:27:39.144112",
     "end_time": "2025-12-30T17:27:50.788041",
     "duration": 11.643929
+  },
+  {
+    "session_id": "20251230_173541",
+    "start_time": "2025-12-30T17:35:41.443223",
+    "wake_word_score": 0.10410439968109131,
+    "wake_word_time": "2025-12-30T17:35:41.443223",
+    "end_time": "2025-12-30T17:35:56.827263",
+    "duration": 15.38404
+  },
+  {
+    "session_id": "20251230_174553",
+    "start_time": "2025-12-30T17:45:53.659752",
+    "wake_word_score": 0.9716417789459229,
+    "wake_word_time": "2025-12-30T17:45:53.659752",
+    "end_time": "2025-12-30T17:45:58.872646",
+    "duration": 5.212894
+  },
+  {
+    "session_id": "20251230_174614",
+    "start_time": "2025-12-30T17:46:14.601721",
+    "wake_word_score": 0.9985138773918152,
+    "wake_word_time": "2025-12-30T17:46:14.601721",
+    "end_time": "2025-12-30T17:46:22.880579",
+    "duration": 8.278858
+  },
+  {
+    "session_id": "20251230_174625",
+    "start_time": "2025-12-30T17:46:25.360896",
+    "wake_word_score": 0.9492677450180054,
+    "wake_word_time": "2025-12-30T17:46:25.360896",
+    "tts_start": "2025-12-30T17:46:33.215288",
+    "tts_end": "2025-12-30T17:46:33.255753",
+    "tts_duration": 0.040465,
+    "end_time": "2025-12-30T17:46:48.882857",
+    "duration": 23.521961
+  },
+  {
+    "session_id": "20251230_175359",
+    "start_time": "2025-12-30T17:53:59.944905",
+    "wake_word_score": 0.9839431047439575,
+    "wake_word_time": "2025-12-30T17:53:59.944905",
+    "end_time": "2025-12-30T17:54:11.924884",
+    "duration": 11.979979
+  },
+  {
+    "session_id": "20251230_175430",
+    "start_time": "2025-12-30T17:54:30.157356",
+    "wake_word_score": 0.996211588382721,
+    "wake_word_time": "2025-12-30T17:54:30.157356",
+    "end_time": "2025-12-30T17:54:42.927568",
+    "duration": 12.770212
+  },
+  {
+    "session_id": "20251230_175444",
+    "start_time": "2025-12-30T17:54:44.282261",
+    "wake_word_score": 0.3285338282585144,
+    "wake_word_time": "2025-12-30T17:54:44.282261",
+    "end_time": "2025-12-30T17:54:59.929163",
+    "duration": 15.646902
+  },
+  {
+    "session_id": "20251230_175541",
+    "start_time": "2025-12-30T17:55:41.405706",
+    "wake_word_score": 0.9874567985534668,
+    "wake_word_time": "2025-12-30T17:55:41.405706",
+    "end_time": "2025-12-30T17:55:53.942212",
+    "duration": 12.536506
+  },
+  {
+    "session_id": "20251230_175614",
+    "start_time": "2025-12-30T17:56:14.211298",
+    "wake_word_score": 0.13277465105056763,
+    "wake_word_time": "2025-12-30T17:56:14.211298",
+    "end_time": "2025-12-30T17:56:14.943493",
+    "duration": 0.732195
+  },
+  {
+    "session_id": "20251230_175646",
+    "start_time": "2025-12-30T17:56:46.665079",
+    "wake_word_score": 0.18425947427749634,
+    "wake_word_time": "2025-12-30T17:56:46.665079",
+    "end_time": "2025-12-30T17:56:51.949040",
+    "duration": 5.283961
+  },
+  {
+    "session_id": "20251230_175908",
+    "start_time": "2025-12-30T17:59:08.974155",
+    "wake_word_score": 0.237350732088089,
+    "wake_word_time": "2025-12-30T17:59:08.974155",
+    "end_time": "2025-12-30T17:59:13.961112",
+    "duration": 4.986957
+  },
+  {
+    "session_id": "20251230_175930",
+    "start_time": "2025-12-30T17:59:30.766521",
+    "wake_word_score": 0.5536699295043945,
+    "wake_word_time": "2025-12-30T17:59:30.766521",
+    "end_time": "2025-12-30T17:59:34.964512",
+    "duration": 4.197991
+  },
+  {
+    "session_id": "20251230_180015",
+    "start_time": "2025-12-30T18:00:15.651551",
+    "wake_word_score": 0.7291380763053894,
+    "wake_word_time": "2025-12-30T18:00:15.651551",
+    "end_time": "2025-12-30T18:00:18.971672",
+    "duration": 3.320121
+  },
+  {
+    "session_id": "20251230_180143",
+    "start_time": "2025-12-30T18:01:43.087814",
+    "wake_word_score": 0.9620273113250732,
+    "wake_word_time": "2025-12-30T18:01:43.087814",
+    "end_time": "2025-12-30T18:01:46.991065",
+    "duration": 3.903251
+  },
+  {
+    "session_id": "20251230_180153",
+    "start_time": "2025-12-30T18:01:53.299387",
+    "wake_word_score": 0.43225398659706116,
+    "wake_word_time": "2025-12-30T18:01:53.299387",
+    "tts_start": "2025-12-30T18:01:59.592590",
+    "tts_end": "2025-12-30T18:01:59.635713",
+    "tts_duration": 0.043123,
+    "user_question": "I'm a drink.",
+    "question_time": "2025-12-30T18:02:09.620843",
+    "llm_response": "Oh, I see! A \"pint\" is a type of drink, usually for things like beer or soda. It\u2019s a fun way to measure drinks! \n\nIf you were to design your own drink, what would it be? You could even create a LEGO cup to hold it! What flavors would you choose? \ud83c\udf79\u2728",
+    "response_time": "2025-12-30T18:02:11.984510",
+    "llm_latency": 2.363667,
+    "end_time": "2025-12-30T18:02:25.001972",
+    "duration": 31.702585
+  },
+  {
+    "session_id": "20251230_180309",
+    "start_time": "2025-12-30T18:03:09.210124",
+    "wake_word_score": 0.15336859226226807,
+    "wake_word_time": "2025-12-30T18:03:09.210124",
+    "llm_response": "I can't check the time for you, but you can look at a clock or a device nearby! If you want to learn how to tell time, we can connect it to car racing\u2014like how knowing the time can help you figure out the fastest laps! Want to try that? \u23f0\ud83c\udfce\ufe0f",
+    "response_time": "2025-12-30T18:03:16.610954",
+    "user_question": "What time is it?",
+    "question_time": "2025-12-30T18:03:14.318100",
+    "llm_latency": 2.292854,
+    "end_time": "2025-12-30T18:03:30.032360",
+    "duration": 20.822236
+  },
+  {
+    "session_id": "20251230_180456",
+    "start_time": "2025-12-30T18:04:56.773906",
+    "wake_word_score": 0.9917343854904175,
+    "wake_word_time": "2025-12-30T18:04:56.773906",
+    "end_time": "2025-12-30T18:05:01.049225",
+    "duration": 4.275319
+  },
+  {
+    "session_id": "20251230_180506",
+    "start_time": "2025-12-30T18:05:06.902471",
+    "wake_word_score": 0.9677671194076538,
+    "wake_word_time": "2025-12-30T18:05:06.902471",
+    "tts_start": "2025-12-30T18:05:21.827915",
+    "tts_end": "2025-12-30T18:05:21.828158",
+    "tts_duration": 0.000243,
+    "user_question": "Hey Jarvis, what is the biggest ocean in the world?",
+    "question_time": "2025-12-30T18:05:25.525924",
+    "llm_response": "Hey there! The biggest ocean in the world is the Pacific Ocean! It\u2019s so huge that it covers more area than all the land on Earth combined! Can you imagine building a LEGO model of a giant ocean or maybe even a spaceship to explore it? What would you create?",
+    "response_time": "2025-12-30T18:05:27.278185",
+    "llm_latency": 1.752261,
+    "end_time": "2025-12-30T18:05:41.064863",
+    "duration": 34.162392
+  },
+  {
+    "session_id": "20251230_180624",
+    "start_time": "2025-12-30T18:06:24.582705",
+    "wake_word_score": 0.37053364515304565,
+    "wake_word_time": "2025-12-30T18:06:24.582705",
+    "end_time": "2025-12-30T18:06:34.075947",
+    "duration": 9.493242
+  },
+  {
+    "session_id": "20251230_180636",
+    "start_time": "2025-12-30T18:06:36.420540",
+    "wake_word_score": 0.36545830965042114,
+    "wake_word_time": "2025-12-30T18:06:36.420540",
+    "user_question": "Hey, Jarvis, can you reset everything on screen?",
+    "question_time": "2025-12-30T18:06:47.660362",
+    "llm_response": "It sounds like you might want to refresh your workspace! While I can't reset things on your screen, I can help you think about how to organize your projects or ideas. Maybe you can build a new LEGO model or start a fresh craft project! What would you like to create next? \ud83c\udf1f\ud83d\udee0\ufe0f",
+    "response_time": "2025-12-30T18:06:49.326684",
+    "llm_latency": 1.666322,
+    "tts_start": "2025-12-30T18:06:42.820015",
+    "tts_end": "2025-12-30T18:06:42.820145",
+    "tts_duration": 0.00013,
+    "end_time": "2025-12-30T18:07:03.092166",
+    "duration": 26.671626
+  },
+  {
+    "session_id": "20251230_182209",
+    "start_time": "2025-12-30T18:22:09.272888",
+    "wake_word_score": 0.9944553375244141,
+    "wake_word_time": "2025-12-30T18:22:09.272888",
+    "end_time": "2025-12-30T18:22:14.172601",
+    "duration": 4.899713
+  },
+  {
+    "session_id": "20251230_182220",
+    "start_time": "2025-12-30T18:22:20.271743",
+    "wake_word_score": 0.8649911284446716,
+    "wake_word_time": "2025-12-30T18:22:20.271743",
+    "user_question": "Can't get rid of this please. I don't like it. How are you doing today? I am just kidding. But I don't want to talk to you. She is right now. I need to change it. I'm just testing this round. I'll take it. See? It is doing something. Now keep quiet.",
+    "question_time": "2025-12-30T18:22:32.214197",
+    "llm_response": "That's totally okay! It sounds like you're having a fun time testing things out. If you ever want to chat about LEGO, cars, or anything else you love, I'm here for you! Keep being creative and exploring! \ud83d\ude0a\u2728",
+    "response_time": "2025-12-30T18:22:33.516654",
+    "llm_latency": 1.302457,
+    "tts_start": "2025-12-30T18:22:47.255869",
+    "tts_end": "2025-12-30T18:22:47.299800",
+    "tts_duration": 0.043931,
+    "end_time": "2025-12-30T18:23:03.183722",
+    "duration": 42.911979
+  },
+  {
+    "session_id": "20251230_182315",
+    "start_time": "2025-12-30T18:23:15.214598",
+    "wake_word_score": 0.12043604254722595,
+    "wake_word_time": "2025-12-30T18:23:15.214598",
+    "end_time": "2025-12-30T18:23:20.192358",
+    "duration": 4.97776
+  },
+  {
+    "session_id": "20251230_182336",
+    "start_time": "2025-12-30T18:23:36.061448",
+    "wake_word_score": 0.1888449788093567,
+    "wake_word_time": "2025-12-30T18:23:36.061448",
+    "end_time": "2025-12-30T18:23:41.221211",
+    "duration": 5.159763
+  },
+  {
+    "session_id": "20251230_182346",
+    "start_time": "2025-12-30T18:23:46.414260",
+    "wake_word_score": 0.17763477563858032,
+    "wake_word_time": "2025-12-30T18:23:46.414260",
+    "user_question": "and the very important with you.",
+    "question_time": "2025-12-30T18:23:58.131018",
+    "llm_response": "Thank you! That means a lot! I'm here to help you explore all your cool ideas and projects. What\u2019s something important you\u2019d like to work on together? Maybe a new LEGO build or a space project? Let\u2019s make it amazing!",
+    "response_time": "2025-12-30T18:24:00.329202",
+    "llm_latency": 2.198184,
+    "tts_start": "2025-12-30T18:24:21.028493",
+    "tts_end": "2025-12-30T18:24:21.071685",
+    "tts_duration": 0.043192,
+    "end_time": "2025-12-30T18:24:36.234762",
+    "duration": 49.820502
+  },
+  {
+    "session_id": "20251230_182741",
+    "start_time": "2025-12-30T18:27:41.586359",
+    "wake_word_score": 0.5962411761283875,
+    "wake_word_time": "2025-12-30T18:27:41.586359",
+    "end_time": "2025-12-30T18:27:53.255546",
+    "duration": 11.669187
+  },
+  {
+    "session_id": "20251230_182827",
+    "start_time": "2025-12-30T18:28:27.602444",
+    "wake_word_score": 0.9896032810211182,
+    "wake_word_time": "2025-12-30T18:28:27.602444",
+    "end_time": "2025-12-30T18:28:34.265858",
+    "duration": 6.663414
+  },
+  {
+    "session_id": "20251230_182910",
+    "start_time": "2025-12-30T18:29:10.855785",
+    "wake_word_score": 0.2224370241165161,
+    "wake_word_time": "2025-12-30T18:29:10.855785",
+    "user_question": "What is the height of iPhone Tower?",
+    "question_time": "2025-12-30T18:29:18.823900",
+    "llm_response": "The iPhone Tower, also known as the Apple Park, is about 20 feet tall! It's not a real tower like a skyscraper, but a super cool circular building where people design and create awesome Apple products. You could build a mini version of it with LEGO! What would you include in your design?",
+    "response_time": "2025-12-30T18:29:20.269316",
+    "llm_latency": 1.445416,
+    "end_time": "2025-12-30T18:29:34.272895",
+    "duration": 23.41711
+  },
+  {
+    "session_id": "20251230_183008",
+    "start_time": "2025-12-30T18:30:08.820847",
+    "wake_word_score": 0.3010571599006653,
+    "wake_word_time": "2025-12-30T18:30:08.820847",
+    "end_time": "2025-12-30T18:30:16.281270",
+    "duration": 7.460423
+  },
+  {
+    "session_id": "20251230_183056",
+    "start_time": "2025-12-30T18:30:56.358829",
+    "wake_word_score": 0.9970012903213501,
+    "wake_word_time": "2025-12-30T18:30:56.358829",
+    "end_time": "2025-12-30T18:31:01.292641",
+    "duration": 4.933812
+  },
+  {
+    "session_id": "20251230_183106",
+    "start_time": "2025-12-30T18:31:06.794334",
+    "wake_word_score": 0.5436394810676575,
+    "wake_word_time": "2025-12-30T18:31:06.794334",
+    "user_question": "Because... What is the biggest teddy bear? And the biggest teddy bear that they wanted at me? And I'm dead. It's 18 feet, but you have me, though, this is the only thing I can do in the world. I've seen the tonguewitch in that, don't you know? Oh yeah, six, six of me, three of me. Oh, I got you! You're my secret, huh?",
+    "question_time": "2025-12-30T18:31:21.940959",
+    "llm_response": "Wow, it sounds like you're talking about some really big teddy bears and having fun with your imagination! The biggest teddy bear ever recorded is about 18 feet tall\u2014that's like having a giant friend to hug! You could even build a LEGO version of a huge teddy bear. What would you name your giant teddy bear if you built one? And how would you decorate it?",
+    "response_time": "2025-12-30T18:31:23.780100",
+    "llm_latency": 1.839141,
+    "end_time": "2025-12-30T18:31:37.300799",
+    "duration": 30.506465
+  },
+  {
+    "session_id": "20251230_183243",
+    "start_time": "2025-12-30T18:32:43.580708",
+    "wake_word_score": 0.9678462147712708,
+    "wake_word_time": "2025-12-30T18:32:43.580708",
+    "end_time": "2025-12-30T18:32:46.308672",
+    "duration": 2.727964
+  },
+  {
+    "session_id": "20251230_183253",
+    "start_time": "2025-12-30T18:32:53.681898",
+    "wake_word_score": 0.9583882093429565,
+    "wake_word_time": "2025-12-30T18:32:53.681898",
+    "user_question": "Who are you? Hey Jarvis, hey Jarvis, what is the biggest you could see in the world?",
+    "question_time": "2025-12-30T18:33:00.664614",
+    "llm_response": "Hey there! I\u2019m JARVIS, your friendly AI assistant here to help you explore all things creative and scientific! \ud83c\udf1f When it comes to the biggest things in the world, you might want to look up at the night sky! \n\nThe biggest thing we can see is the universe itself! It\u2019s made up of countless galaxies, stars, and planets. But if you\u2019re thinking about something on Earth, the biggest living thing is the giant sequoia tree! They can grow taller than",
+    "response_time": "2025-12-30T18:33:02.759896",
+    "llm_latency": 2.095282,
+    "end_time": "2025-12-30T18:33:16.312421",
+    "duration": 22.630523
+  },
+  {
+    "session_id": "20251230_183335",
+    "start_time": "2025-12-30T18:33:35.963319",
+    "wake_word_score": 0.23941689729690552,
+    "wake_word_time": "2025-12-30T18:33:35.963319",
+    "user_question": "you are like speaking super fast it can't run. Nobody can run stand. No. Okay come here.",
+    "question_time": "2025-12-30T18:33:51.689306",
+    "llm_response": "I\u2019m here for you! Let\u2019s take it slow. What would you like to talk about? Maybe something about your favorite cars or a cool space fact? Just let me know! \ud83d\ude0a\ud83d\ude97\u2728",
+    "response_time": "2025-12-30T18:33:52.801912",
+    "llm_latency": 1.112606,
+    "tts_start": "2025-12-30T18:34:07.601213",
+    "tts_end": "2025-12-30T18:34:07.643761",
+    "tts_duration": 0.042548,
+    "end_time": "2025-12-30T18:34:23.320046",
+    "duration": 47.356727
+  },
+  {
+    "session_id": "20251230_183453",
+    "start_time": "2025-12-30T18:34:53.663174",
+    "wake_word_score": 0.9679492712020874,
+    "wake_word_time": "2025-12-30T18:34:53.663174",
+    "end_time": "2025-12-30T18:34:54.328894",
+    "duration": 0.66572
+  },
+  {
+    "session_id": "20251230_183514",
+    "start_time": "2025-12-30T18:35:14.299167",
+    "wake_word_score": 0.9641995429992676,
+    "wake_word_time": "2025-12-30T18:35:14.299167",
+    "end_time": "2025-12-30T18:35:19.332423",
+    "duration": 5.033256
+  },
+  {
+    "session_id": "20251230_185656",
+    "start_time": "2025-12-30T18:56:56.046154",
+    "wake_word_score": 0.1455402374267578,
+    "wake_word_time": "2025-12-30T18:56:56.046154",
+    "end_time": "2025-12-30T18:57:11.434297",
+    "duration": 15.388143
+  },
+  {
+    "session_id": "20251230_201927",
+    "start_time": "2025-12-30T20:19:27.985590",
+    "wake_word_score": 0.4758554697036743,
+    "wake_word_time": "2025-12-30T20:19:27.985590",
+    "end_time": "2025-12-30T20:19:31.796063",
+    "duration": 3.810473
+  },
+  {
+    "session_id": "20251230_201943",
+    "start_time": "2025-12-30T20:19:43.260793",
+    "wake_word_score": 0.13636231422424316,
+    "wake_word_time": "2025-12-30T20:19:43.260793",
+    "end_time": "2025-12-30T20:19:58.798822",
+    "duration": 15.538029
   }
 ]

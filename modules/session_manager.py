@@ -9,6 +9,10 @@ import yaml
 import time
 import threading
 from enum import Enum
+from datetime import datetime
+
+def ts():
+    return datetime.now().strftime("%H:%M:%S")
 
 class SessionState(Enum):
     IDLE = "idle"
@@ -43,7 +47,7 @@ class SessionManager:
         self.running = False
     
     def on_connect(self, client, userdata, flags, rc, properties=None):
-        print(f"[SessionManager] Connected to MQTT broker (rc={rc})")
+        print(f"[{ts()}] [SessionManager] Connected to MQTT broker (rc={rc})")
         
         # Subscribe to relevant topics
         client.subscribe(self.topics['session']['wake_detected'])
@@ -62,39 +66,44 @@ class SessionManager:
         # Session command (cancel/reset)
         if topic == self.topics['session']['command']:
             if payload == "cancel" or payload == "reset":
-                print(f"[SessionManager] ⚠️  CANCEL command received! {self.state.value.upper()} → IDLE")
+                print(f"[{ts()}] [SessionManager] ⚠️  CANCEL command received! {self.state.value.upper()} → IDLE")
                 self.set_state(SessionState.IDLE)
         
         # Wake word detected
         elif topic == self.topics['session']['wake_detected']:
             if self.state == SessionState.IDLE:
-                print(f"[SessionManager] Wake word detected! IDLE → ACTIVE")
+                print(f"[{ts()}] [SessionManager] Wake word detected! IDLE → ACTIVE")
                 self.last_activity = time.time()
                 self.set_state(SessionState.ACTIVE)
         
         # User spoke (transcription received)
         elif topic == self.topics['audio']['transcription']:
             if self.state == SessionState.ACTIVE:
-                print(f"[SessionManager] User said: {payload}")
-                self.last_activity = time.time()
+                print(f"[{ts()}] [SessionManager] User said: {payload}")
                 
                 # Check for goodbye phrases
                 if any(phrase in payload.lower() for phrase in self.goodbye_phrases):
-                    print(f"[SessionManager] Goodbye detected! ACTIVE → IDLE")
+                    print(f"[{ts()}] [SessionManager] Goodbye detected! ACTIVE → IDLE")
                     self.set_state(SessionState.IDLE)
                 else:
-                    # Publish command to LLM
+                    # Publish command to LLM and go to SPEAKING state immediately
+                    # This prevents microphone from staying active during LLM processing
                     self.client.publish(self.topics['llm']['request'], payload)
+                    print(f"[{ts()}] [SessionManager] Transcription sent to LLM. ACTIVE → SPEAKING")
+                    self.set_state(SessionState.SPEAKING)
         
         # Robot started speaking
         elif topic == self.topics['robot']['speaking']:
-            if payload == "true" and self.state == SessionState.ACTIVE:
-                print(f"[SessionManager] Robot speaking. ACTIVE → SPEAKING")
-                self.set_state(SessionState.SPEAKING)
-            elif payload == "false" and self.state == SessionState.SPEAKING:
-                print(f"[SessionManager] Robot finished. SPEAKING → ACTIVE")
-                self.set_state(SessionState.ACTIVE)
-                self.last_activity = time.time()
+            if payload == "true":
+                # TTS started - ensure we're in SPEAKING state
+                if self.state != SessionState.SPEAKING:
+                    print(f"[{ts()}] [SessionManager] Robot speaking. {self.state.value.upper()} → SPEAKING")
+                    self.set_state(SessionState.SPEAKING)
+            elif payload == "false":
+                # TTS finished - return to IDLE (not ACTIVE to prevent feedback loop)
+                if self.state == SessionState.SPEAKING:
+                    print(f"[{ts()}] [SessionManager] Robot finished. SPEAKING → IDLE")
+                    self.set_state(SessionState.IDLE)
     
     def set_state(self, new_state):
         """Change state and publish"""
@@ -122,12 +131,12 @@ class SessionManager:
             if self.state == SessionState.ACTIVE:
                 idle_time = time.time() - self.last_activity
                 if idle_time > self.timeout:
-                    print(f"[SessionManager] Timeout ({self.timeout}s). ACTIVE → IDLE")
+                    print(f"[{ts()}] [SessionManager] Timeout ({self.timeout}s). ACTIVE → IDLE")
                     self.set_state(SessionState.IDLE)
     
     def start(self):
         """Start the session manager"""
-        print("[SessionManager] Starting...")
+        print(f"[{ts()}] [SessionManager] Starting...")
         
         # Connect to MQTT
         broker = self.mqtt_config['mqtt']['broker']
@@ -140,12 +149,12 @@ class SessionManager:
         self.timeout_thread.start()
         
         # Start MQTT loop
-        print(f"[SessionManager] Ready. State: {self.state.value}")
+        print(f"[{ts()}] [SessionManager] Ready. State: {self.state.value}")
         self.client.loop_forever()
     
     def stop(self):
         """Stop the session manager"""
-        print("[SessionManager] Stopping...")
+        print(f"[{ts()}] [SessionManager] Stopping...")
         self.running = False
         self.client.disconnect()
 
