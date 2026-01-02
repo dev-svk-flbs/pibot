@@ -168,11 +168,11 @@ try:
                 # 1. Record
                 if record_audio_alsa(TEMP_FILENAME, RECORDING_DURATION):
                     
-                    # 2. Archive (copy for debugging)
-                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                    archive_path = os.path.join(ARCHIVE_DIR, f"question_{timestamp}.wav")
-                    subprocess.run(["cp", TEMP_FILENAME, archive_path])
-                    print(f"[{ts()}] [TRANSCRIBE] 💾 Archived: {archive_path}")
+                    # 2. Archive (copy for debugging) - DISABLED FOR PERFORMANCE
+                    # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                    # archive_path = os.path.join(ARCHIVE_DIR, f"question_{timestamp}.wav")
+                    # subprocess.run(["cp", TEMP_FILENAME, archive_path])
+                    # print(f"[{ts()}] [TRANSCRIBE] 💾 Archived: {archive_path}")
                     
                     # 3. Transcribe
                     text = transcribe_file(TEMP_FILENAME)
