@@ -86,6 +86,9 @@ class SessionManager:
                     print(f"[{ts()}] [SessionManager] Goodbye detected! ACTIVE → IDLE")
                     self.set_state(SessionState.IDLE)
                 else:
+                    # Publish "thinking" state before sending to LLM
+                    self.client.publish(self.topics['session']['state'], "thinking", retain=True)
+                    
                     # Publish command to LLM and go to SPEAKING state immediately
                     # This prevents microphone from staying active during LLM processing
                     self.client.publish(self.topics['llm']['request'], payload)

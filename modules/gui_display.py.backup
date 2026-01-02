@@ -1,0 +1,327 @@
+#!/usr/bin/env python3
+"""
+JARVIS GUI Display - Kid-Friendly Bold Interface
+Bright, crisp, engaging design with step-by-step status indicators
+"""
+
+import tkinter as tk
+from tkinter import scrolledtext
+import paho.mqtt.client as mqtt
+import yaml
+import threading
+import time
+from datetime import datetime
+
+class JarvisGUI:
+    def __init__(self):
+        # Load MQTT config
+        with open('config/mqtt.yaml', 'r') as f:
+            mqtt_config = yaml.safe_load(f)
+        self.mqtt_config = mqtt_config
+        self.topics = mqtt_config['topics']
+        
+        # State tracking
+        self.state = "idle"
+        self.current_step = ""
+        self.animation_dots = 0
+        self.animation_running = False
+        
+        # Colors - KID-FRIENDLY: Dark background with BRIGHT, BOLD accents
+        self.bg_dark = "#0a0e1a"           # Deep dark blue-black
+        self.bg_card = "#1a2332"           # Dark blue card background
+        self.neon_cyan = "#00ffff"         # Bright cyan (primary accent)
+        self.neon_green = "#00ff88"        # Bright green (success/active)
+        self.neon_purple = "#cc00ff"       # Bright purple (thinking)
+        self.neon_blue = "#0099ff"         # Bright blue (speaking)
+        self.neon_yellow = "#ffff00"       # Bright yellow (wake word)
+        self.text_white = "#ffffff"        # Pure white text
+        self.text_dim = "#8899aa"          # Dimmed text for secondary info
+        
+        # Create main window
+        self.root = tk.Tk()
+        self.root.title("JARVIS")
+        self.root.configure(bg=self.bg_dark)
+        self.root.cursor("none")  # Hide cursor for cleaner look
+        
+        # Fullscreen on display 0
+        try:
+            self.root.attributes('-fullscreen', True)
+        except:
+            self.root.geometry("1024x768")
+        
+        self.setup_ui()
+        self.setup_mqtt()
+        
+        # Start animations
+        self.animate_status()
+        self.update_clock()
+     - KID FRIENDLY VERSION"""
+        
+        # Main container with padding
+        main_frame = tk.Frame(self.root, bg=self.bg_dark)
+        main_frame.pack(fill=tk.BOTH, expand=True, padx=30, pady=30)
+        
+        # ===== HEADER: BIG BOLD JARVIS TITLE =====
+        header_frame = tk.Frame(main_frame, bg=self.bg_dark)
+        header_frame.pack(fill=tk.X, pady=(0, 20))
+        
+        # JARVIS title - HUGE and BRIGHT
+        self.title_label = tk.Label(
+            header_frame,
+            text="J A R V I S",
+            font=("Arial Black", 80, "bold"),
+            fg=self.neon_cyan,
+            bg=self.bg_dark
+        )
+        self.title_label.pack(side=tk.LEFT)
+        
+        # Clock in top right
+        self.clock_label = tk.Label(
+            header_frame,
+            text="00:00",
+            font=("Arial", 36, "bold"),
+            fg=self.text_dim,
+            bg=self.bg_dark
+        )
+        self.clock_label.pack(side=tk.RIGHT, padx=20)
+        
+        # ===== STATUS DISPLAY: STEP-BY-STEP PROGRESS =====
+        status_card = tk.Frame(main_frame, bg=self.bg_card, highlightthickness=3, highlightbackground=self.neon_cyan)
+        status_card.pack(fill=tk.X, pady=(0, 30))
+        
+        # Status text - HUGE, CLEAR, ANIMATED
+        self.status_main = tk.Label(
+            status_card,
+            text="💤 WAITING FOR WAKE WORD",
+            font=("Arial Black", 48, "bold"),
+            fg=self.text_dim,
+            bg=self.bg_card,
+            pady=30
+        )
+        self.status_main.pack()
+        
+        # Sub-status for detailed steps
+        self.status_sub = tk.Label(
+            status_card,
+            text="Say 'Hey Jarvis' to start",
+            font=("Arial", 28),
+            fg=self.text_dim,
+            bg=self.bg_card,
+            pady=(0, 20)
+        )
+        self.status_sub.pack()
+        
+        # ===== CONVERSATION DISPLAY =====
+        conv_card = tk.Frame(main_frame, bg=self.bg_card, highlightthickness=3, highlightbackground=self.neon_cyan)
+        conv_card.pack(fill=tk.BOTH, expand=True)
+        
+        # Conversation header
+        tk.Label(
+            conv_card,
+            text="CONVERSATION",
+            font=("Arial Black", 32, "bold"),
+            fg=self.neon_cyan,
+            bg=self.bg_card,
+            anchor=tk.W,
+            padx=30,
+            pady=20
+        ).pack(fill=tk.X)
+        
+        # Scrolled text area - AUTO-SCROLLING
+        self.conversation_text = scrolledtext.ScrolledText(
+            conv_card,
+            font=("Arial", 24),
+            bg=self.bg_dark,
+            fg=self.text_white,
+            insertbackground=self.neon_cyan,
+            relief=tk.FLAT,
+            padx=30,
+            pady=20,
+            wrap=tk.WORD,
+            state=tk.DISABLED,
+            borderwidth=0
+        )
+        self.conversation_text.pack(fill=tk.BOTH, expand=True, padx=15, pady=(0, 15))
+        
+        # Configure text tags - BRIGHT COLORS, LARGE FONTS
+        self.conversation_text.tag_config(
+            "user", 
+            foreground=self.neon_green, 
+            font=("Arial Black", 28, "bold")
+        )
+        self.conversation_text.tag_config(
+            "jarvis", 
+            foreground=self.neon_cyan, 
+            font=("Arial", 26)
+        )
+        self.conversation_text.tag_config(
+            "timestamp", 
+            foreground=self.text_dim, 
+            font=("Arial", 20)
+        )
+        self.conversation_text.tag_config(
+            "step", 
+            foreground=self.neon_yellow, 
+            font=("Arial", 22, "italic")
+        
+        )
+        footer.pack(pady=(10, 0))
+        
+        # ESC key to exit fullscreen
+        self.root.bind("<Escape>", lambda e: self.root.attributes('-fullscreen', False))
+    
+    def setup_mqtt(self):
+        """Connect to MQTT broker"""
+        self.mqtt_client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id="gui_display")
+        self.mqtt_client.on_connect = self.on_connect
+        self.mqtt_client.on_message = self.on_message
+        
+        # Connect in background thread
+        def connect_mqtt():
+            broker = self.mqtt_config['mqtt']['broker']
+            port = self.mqtt_config['mqtt']['port']
+            self.mqtt_client.connect(broker, port, 60)
+            self.mqtt_client.loop_start()
+        
+        mqtt_thread = threading.Thread(target=connect_mqtt, daemon=True)
+        mqtt_thread.start()
+    
+    def on_connect(self, client, userdata, flags, rc, properties=None):
+        """Subscribe to relevant topics"""
+        client.subscribe(self.topics['session']['state'])
+        client.subscribe(self.topics['session']['wake_detected'])
+        client.subscribe(self.topics['audio']['transcription'])
+        client.subscribe(self.topics['llm']['response'])
+        self.add_log("System ready", "timestamp")
+    
+    def on_message(self, client, userdata, msg):
+        """Handle MQTT messages"""
+        topic = msg.topic
+        payload = msg.payload.decode('utf-8')
+        
+        # Session state change
+        if topic == self.topics['session']['state']:
+            self.update_state(payload)
+         and update UI"""
+        topic = msg.topic
+        payload = msg.payload.decode('utf-8')
+        
+        # Session state change
+        if topic == self.topics['session']['state']:
+            self.update_state(payload)
+        
+        # Wake word detected
+        elif topic == self.topics['session']['wake_detected']:
+            score = payload
+            self.show_step("wake", f"Wake word detected! (confidence: {score})")
+            self.add_step_log("🎤 Wake word detected!")
+        
+        # User transcription
+        elif topic == self.topics['audio']['transcription']:
+            self.show_step("done", "Transcription complete")
+            self.add_log(f"YOU: {payload}", "user")
+        
+        # JARVIS response
+        elif topic == self.topics['llm']['response']:
+            self.show_step("done", "Response ready")
+            self.add_log(f"JARVIS: {payload - WITH STEP-BY-STEP FEEDBACK"""
+        self.state = new_state.lower()
+        
+        if self.state == "idle":
+            self.show_step("idle", "Waiting for wake word")
+            self.animation_running = False
+        show_step(self, step_type, message):
+        """Update the main status display with step-by-step feedback"""
+        self.current_step = step_type
+        
+        if step_type == "idle":
+            self.status_main.config(text="💤 WAITING FOR WAKE WORD", fg=self.text_dim)
+            self.status_sub.config(text="Say 'Hey Jarvis' to start", fg=self.text_dim)
+            self.title_label.config(fg=self.neon_cyan)
+        
+        elif step_type == "wake":
+            self.status_main.config(text="👂 WAKE WORD DETECTED!", fg=self.neon_yellow)
+            self.status_sub.config(text="Starting conversation...", fg=self.neon_yellow)
+            self.title_label.config(fg=self.neon_yellow)
+        
+        elif step_type == "recording":
+            self.status_main.config(text="🎙️ RECORDING", fg=self.neon_green)
+            self.status_sub.config(text="Listening to your question", fg=self.neon_green)
+            self.title_label.config(fg=self.neon_green)
+        
+        elif step_type == "transcribing":
+            self.status_main.config(text="✍️ TRANSCRIBING", fg=self.neon_purple)
+            self.status_sub.config(text="Converting speech to text", fg=self.neon_purple)
+            self.title_label.config(fg=self.neon_purple)
+        
+        elif step_type == "thinking":
+            self.status_main.config(text="🧠 THINKING", fg=self.neon_purple)
+            self.status_sub.config(text="Asking the AI", fg=self.neon_purple)
+            self.title_label.config(fg=self.neon_purple)
+        
+        elif step_type == "speaking":
+            self.status_main.config(text="🔊 SPEAKING", fg=self.neon_blue)
+            self.status_sub.config(text="Listen to the answer", fg=self.neon_blue)
+            self.title_label.config(fg=self.neon_blue)
+        
+        elif step_type == "done":
+            # Brief "done" state before returning to idle
+            pass
+    
+    def add_step_log(self, message):
+        """Add a step indicator to the conversation log"""
+        self.conversation_text.config(state=tk.NORMAL)
+        timestamp = datetime.now().strftime("%H:%M:%S")
+        self.conversation_text.insert(tk.END, f"[{timestamp}] {message}\n", "step")
+        self.conversation_text.see(tk.END)
+        self.conversation_text.config(state=tk.DISABLED)
+    
+    def add_log(self, message, tag="normal"):
+        """Add message to conversation display with AUTO-SCROLL"""
+        self.conversation_text.config(state=tk.NORMAL)
+        
+        # Add timestamp for main messages
+        if tag in ["user", "jarvis"] and message:
+            timestamp = datetime.now().strftime("%H:%M:%S")
+            self.conversation_text.insert(tk.END, f"[{timestamp}]\n", "timestamp")
+        
+        self.conversation_text.insert(tk.END, message + "\n", tag)
+        
+        # Always auto-scroll to bottom
+        self.conversation_text.see(tk.END)
+        self.conversation_text.config(state=tk.DISABLED)
+    
+    def animate_status(self):
+        """Animate the status display with dots for processing states"""
+        if self.animation_running:
+            # Cycle through 1, 2, 3 dots
+            self.animation_dots = (self.animation_dots % 3) + 1
+            dots = "." * self.animation_dots
+            
+            # Add dots to current status
+            current_text = self.status_main.cget("text")
+            base_text = current_text.rstrip(".")
+            self.status_main.config(text=base_text + dots)
+        
+        # Run every 500ms
+        self.root.after(500, self.animate_status)
+    
+    def update_clock(self):
+        """Update the clock display"""
+        current_time = datetime.now().strftime("%H:%M:%S")
+        self.clock_label.config(text=current_time)
+        self.root.after(1000, self.update_clock
+        self.root.after(500, self.animate_blink)
+    
+    def reset_session(self):
+        """Send reset command to MQTT"""
+        self.mqtt_client.publish(self.topics['session']['command'], "reset")
+        self.add_log("Session reset", "timestamp")
+    
+    def run(self):
+        """Start the GUI"""
+        self.root.mainloop()
+
+if __name__ == "__main__":
+    gui = JarvisGUI()
+    gui.run()

@@ -41,6 +41,7 @@ broker = mqtt_config['mqtt']['broker']
 port = mqtt_config['mqtt']['port']
 topic_wake_detected = mqtt_config['topics']['session']['wake_detected']
 topic_transcription = mqtt_config['topics']['audio']['transcription']
+topic_session_state = mqtt_config['topics']['session']['state']
 
 wake_word_detected = False
 wake_word_lock = threading.Lock()
@@ -123,6 +124,9 @@ def record_audio_alsa(filename, duration):
 
 def transcribe_file(filename):
     """Transcribe the WAV file directly"""
+    # Publish that we're starting transcription
+    client.publish(topic_session_state, "transcribing")
+    
     print(f"[{ts()}] [TRANSCRIBE] ⚡ Transcribing...")
     start = time.time()
     
